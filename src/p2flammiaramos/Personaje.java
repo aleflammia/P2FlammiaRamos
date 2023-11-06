@@ -20,7 +20,7 @@ public class Personaje {
         
         this.company = company;
         this.qAmount = 0; 
-        this.counter = 0; 
+        this.counter = counter; 
         
         this.id = defineId(company, counter);
         
@@ -54,7 +54,7 @@ public class Personaje {
             id = "SF";
         }
         
-        String num = Integer.toString(counter+1);
+        String num = Integer.toString(counter);
         if (num.length()==1){num=("0"+num);}
         id += num;
         return id;
