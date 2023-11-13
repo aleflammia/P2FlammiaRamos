@@ -1,6 +1,4 @@
-
 package p2flammiaramos;
-
 
 public class Queue {
     private Personaje head; 
