@@ -5,7 +5,7 @@ package p2flammiaramos;
 public class Queue {
     private Personaje head; 
     private Personaje tail; 
-    private int size; 
+    public int size; 
     
     public Queue(){
         this.head = null; 

@@ -11,6 +11,7 @@ public class Personaje {
     
     private Personaje next; 
     public int counter; 
+    public int roundsCounter; 
     
     public Personaje(String company, int counter){
         this.skills = (defineQuality(60));
@@ -26,6 +27,7 @@ public class Personaje {
         
         this.level = defineLevel(skills, stamina, strength, agility);
         
+        this.roundsCounter = 0;
     }
     
     public boolean defineQuality(int percentage){
@@ -36,13 +38,13 @@ public class Personaje {
     
     public int defineLevel(boolean skills, boolean stamina, boolean strength, boolean agility){
         
-        if (skills){qAmount+=2;}
-        if (stamina){qAmount++;}
+        if (skills){qAmount+=5;}
+        if (stamina){qAmount+=4;}
         if (strength){qAmount+=3;}
-        if (agility){qAmount+=4;}
+        if (agility){qAmount+=3;}
         
-        if (qAmount >= 8){return 1;}
-        if (qAmount >= 4 && qAmount <= 7){return 2;}
+        if (qAmount >= 11){return 1;}
+        if (qAmount >=5  && qAmount <= 10){return 2;}
         return 3;
     }
     
