@@ -11,6 +11,7 @@ public class Personaje {
     
     private Personaje next; 
     public int counter; 
+    public int roundsCounter; 
     
     public Personaje(String company, int counter){
         this.skills = (defineQuality(60));
@@ -26,6 +27,7 @@ public class Personaje {
         
         this.level = defineLevel(skills, stamina, strength, agility);
         
+        this.roundsCounter = 0;
     }
     
     public boolean defineQuality(int percentage){
