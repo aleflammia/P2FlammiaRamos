@@ -63,7 +63,9 @@ public class Admin extends Thread {
             Personaje newPersonaje = new Personaje(company, nNintendo);
             this.queuePersonaje(newPersonaje, qZE1, qZE2, qZE3);
             
+            
             printPersonaje(newPersonaje);
+            
             
         }else{
             this.nCapcom++;
@@ -109,6 +111,8 @@ public class Admin extends Thread {
     public void printPersonaje(Personaje equis){
         System.out.println("\nADDED: " + equis.id + " //Habilidades:  " + equis.skills + " //Vida:  " + equis.stamina + " //Fuerza:  " + equis.strength + " //Agilidad:  " + equis.agility + " //LEVEL: "+ equis.level);
         
+        System.out.println("\nADDED: " + equis.id + " //Habilidades:  " + equis.skills + " //Vida:  " + equis.stamina + " //Fuerza:  " + equis.strength + " //Agilidad:  " + equis.agility + " //LEVEL: "+ equis.level);
+        
     }
     
     private Personaje getFromQ(Queue q1, Queue q2, Queue q3){
@@ -126,6 +130,34 @@ public class Admin extends Thread {
             return selectedP;
         }
         return null;
+    }
+    
+    private void counterUpdates(Queue q){
+        Personaje aux = q.getHead();
+        while (aux!=null){
+            aux.roundsCounter++;
+            aux = aux.getNext();
+        }
+    }
+    
+    private void priorityCheck(Queue q1, Queue q2, Queue q3){
+        Personaje head = q2.getHead();
+        while (head != null && head.roundsCounter == 8){
+            q2.dequeue();
+            head.level++;
+            head.roundsCounter = 0;
+            this.queuePersonaje(head, q1, q2, q3);
+            head = q2.getHead();
+        }
+        
+        head = q3.getHead();
+        while (head != null && head.roundsCounter == 8){
+            q3.dequeue();
+            head.level++;
+            head.roundsCounter = 0;
+            this.queuePersonaje(head, q1, q2, q3);
+            head = q3.getHead();
+        }
     }
     
     private void counterUpdates(Queue q){
