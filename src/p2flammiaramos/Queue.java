@@ -6,6 +6,7 @@ public class Queue {
     private Personaje head; 
     private Personaje tail; 
     public int size; 
+    public int size; 
     
     public Queue(){
         this.head = null; 

@@ -58,13 +58,14 @@ public class Admin extends Thread {
     }
     
     public void newPersonaje(String company){
-        
         if (company.equals("Nintendo")){
             this.nNintendo++;
             Personaje newPersonaje = new Personaje(company, nNintendo);
             this.queuePersonaje(newPersonaje, qZE1, qZE2, qZE3);
             
+            
             printPersonaje(newPersonaje);
+            
             
         }else{
             this.nCapcom++;
@@ -72,6 +73,7 @@ public class Admin extends Thread {
             this.queuePersonaje(newPersonaje, qSF1, qSF2, qSF3);
             printPersonaje(newPersonaje);
         }
+        Main.interfaz.updateQueues(qZE1, qZE2, qZE3, qZE4, qSF1, qSF2, qSF3, qSF4);   
         
     }
     
@@ -107,6 +109,8 @@ public class Admin extends Thread {
     }
     
     public void printPersonaje(Personaje equis){
+        System.out.println("\nADDED: " + equis.id + " //Habilidades:  " + equis.skills + " //Vida:  " + equis.stamina + " //Fuerza:  " + equis.strength + " //Agilidad:  " + equis.agility + " //LEVEL: "+ equis.level);
+        
         System.out.println("\nADDED: " + equis.id + " //Habilidades:  " + equis.skills + " //Vida:  " + equis.stamina + " //Fuerza:  " + equis.strength + " //Agilidad:  " + equis.agility + " //LEVEL: "+ equis.level);
         
     }
@@ -156,6 +160,34 @@ public class Admin extends Thread {
         }
     }
     
+    private void counterUpdates(Queue q){
+        Personaje aux = q.getHead();
+        while (aux!=null){
+            aux.roundsCounter++;
+            aux = aux.getNext();
+        }
+    }
+    
+    private void priorityCheck(Queue q1, Queue q2, Queue q3){
+        Personaje head = q2.getHead();
+        while (head != null && head.roundsCounter == 8){
+            q2.dequeue();
+            head.level++;
+            head.roundsCounter = 0;
+            this.queuePersonaje(head, q1, q2, q3);
+            head = q2.getHead();
+        }
+        
+        head = q3.getHead();
+        while (head != null && head.roundsCounter == 8){
+            q3.dequeue();
+            head.level++;
+            head.roundsCounter = 0;
+            this.queuePersonaje(head, q1, q2, q3);
+            head = q3.getHead();
+        }
+    }
+    
     @Override
     public void run(){
         try {
@@ -171,17 +203,17 @@ public class Admin extends Thread {
                     this.probsNewPersonaje("Capcom");
                     this.roundsN = 0;
                 }
- 
                 
                 Personaje pZE = this.getFromQ(qZE1, qZE2, qZE3);
                 Personaje pSF = this.getFromQ(qSF1, qSF2, qSF3);
                 ai.pZE = pZE;
                 ai.pSF = pSF;
-                        
+                Main.interfaz.updateSelected(pZE.id + "  y  " + pSF.id); 
+                Main.interfaz.updateQueues(qZE1, qZE2, qZE3, qZE4, qSF1, qSF2, qSF3, qSF4);       
                 //System.out.println("\n-- Admin running");
             
                 this.mutex.release();
-                sleep(1000);
+                sleep(2000);
                 this.mutex.acquire();
  
                 
@@ -196,6 +228,8 @@ public class Admin extends Thread {
                 priorityCheck(qSF1, qSF2, qSF3);
                 
                 this.roundsN++;
+                
+                Main.interfaz.updateQueues(qZE1, qZE2, qZE3, qZE4, qSF1, qSF2, qSF3, qSF4);
                 
             } catch (InterruptedException ex) {
             Logger.getLogger(Admin.class.getName()).log(Level.SEVERE, null, ex);
