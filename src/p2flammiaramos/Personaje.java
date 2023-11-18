@@ -12,7 +12,6 @@ public class Personaje {
     private Personaje next; 
     public int counter; 
     public int roundsCounter; 
-    public int roundsCounter; 
     
     public Personaje(String company, int counter){
         this.skills = (defineQuality(60));

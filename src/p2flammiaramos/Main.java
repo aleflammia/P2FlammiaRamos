@@ -9,6 +9,7 @@ public class Main {
     public static Interfaz interfaz = new Interfaz();
     public static Admin admin = new Admin();
     public static AI ai = new AI();
+    public static int duration = Integer.parseInt(interfaz.getDuration())*1000;
 
     public static void main(String[] args) {
         admin.exe();

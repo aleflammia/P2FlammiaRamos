@@ -13,9 +13,11 @@ public class AI extends Thread {
     public Semaphore mutex; 
     public Personaje pZE;
     public Personaje pSF;
+    public Admin admin;
     
     public AI() {
         this.mutex = Main.mutex;
+        this.admin = Main.admin;
         
     }
     
@@ -107,8 +109,28 @@ public class AI extends Thread {
                 
                 System.out.println("\nAI -- Selected:   " + pZE.id + "  y  " + pSF.id);
                 
+                int resultado = resultado();
+                sleep(5000);
+                switch (resultado) {
+                    case 1:
+                        System.out.println("\tGanador: " + ganador(pZE, pSF).id); 
+                        break;
+                    case 2:
+                        System.out.println("Empate ");
+                        pZE.level = pSF.level = 1;
+                        admin.queuePersonaje(pZE, admin.qZE1, admin.qZE2, admin.qZE3);
+                        admin.queuePersonaje(pSF, admin.qSF1, admin.qSF2, admin.qSF3);
+                        break;
+                    
+                    case 3: 
+                        System.out.println("Refuerzo ");
+                        admin.sendRefuerzo(pZE, admin.qZE4);
+                        admin.sendRefuerzo(pSF, admin.qSF4);
+                        break;
+                }
+                
                 this.mutex.release();
-                sleep(2000);
+                sleep(1000);
                 
             }catch (InterruptedException ex) {      
                 Logger.getLogger(AI.class.getName()).log(Level.SEVERE, null, ex);
