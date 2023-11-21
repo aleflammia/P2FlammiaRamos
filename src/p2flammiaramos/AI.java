@@ -30,14 +30,16 @@ public class AI extends Thread {
         // 2 para Empate
         // 3 para Refuerzo
 
-        int probsResultado = random();
-        if (probsResultado <= 40){
-            return 1;
-        } else if (probsResultado>40 && probsResultado<=67){
-            return 2;
-        } else {
-            return 3;
-        }
+        return 3; 
+        
+//        int probsResultado = random();
+//        if (probsResultado <= 40){
+//            return 1;
+//        } else if (probsResultado>40 && probsResultado<=67){
+//            return 2;
+//        } else {
+//            return 3;
+//        }
     }
     
     public Personaje ganador(Personaje ZE, Personaje SF){
@@ -110,7 +112,7 @@ public class AI extends Thread {
                 System.out.println("\nAI -- Selected:   " + pZE.id + "  y  " + pSF.id);
                 
                 int resultado = resultado();
-                sleep(5000);
+                sleep(Main.duration);
                 switch (resultado) {
                     case 1:
                         System.out.println("\tGanador: " + ganador(pZE, pSF).id); 
@@ -128,6 +130,7 @@ public class AI extends Thread {
                         admin.sendRefuerzo(pSF, admin.qSF4);
                         break;
                 }
+                sleep(Main.duration);
                 
                 this.mutex.release();
                 sleep(1000);

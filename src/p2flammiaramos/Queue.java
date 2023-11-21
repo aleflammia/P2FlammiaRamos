@@ -35,6 +35,7 @@ public class Queue {
     public void dequeue(){
         if(this.isEmpty()){
         }else if(size == 1){
+            
             this.empty();
         }else{
             head = head.getNext();

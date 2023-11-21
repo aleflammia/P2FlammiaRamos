@@ -143,6 +143,7 @@ public class Admin extends Thread {
     private void priorityCheck(Queue q1, Queue q2, Queue q3){
         Personaje head = q2.getHead();
         while (head != null && head.roundsCounter == 8){
+            head.setNext(null);
             q2.dequeue();
             head.level++;
             head.roundsCounter = 0;
@@ -152,6 +153,7 @@ public class Admin extends Thread {
         
         head = q3.getHead();
         while (head != null && head.roundsCounter == 8){
+            head.setNext(null);
             q3.dequeue();
             head.level++;
             head.roundsCounter = 0;
@@ -163,7 +165,7 @@ public class Admin extends Thread {
     @Override
     public void run(){
         try {
-            sleep(1000);
+            sleep(2000);
         } catch (InterruptedException ex) {
             Logger.getLogger(Admin.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -177,15 +179,17 @@ public class Admin extends Thread {
                 }
                 
                 Personaje pZE = this.getFromQ(this.qZE1,this.qZE2,this.qZE3);
+                pZE.setNext(null);
                 Personaje pSF = this.getFromQ(this.qSF1,this.qSF2,this.qSF3);
+                pSF.setNext(null);
                 ai.pZE = pZE;
                 ai.pSF = pSF;
-                Main.interfaz.updateSelected(pZE.id + "  y  " + pSF.id); 
+                Main.interfaz.updateSelected(pZE, pSF); 
                 Main.interfaz.updateQueues(qZE1,this.qZE2,this.qZE3,this.qZE4,this.qSF1,this.qSF2,this.qSF3,this.qSF4);       
                 //System.out.println("\n-- Admin running");
             
                 this.mutex.release();
-                sleep(1500);
+                sleep(Main.duration/2);
                 this.mutex.acquire();
  
                 
