@@ -171,7 +171,10 @@ public class Admin extends Thread {
         }
         while (true){
             try {
-
+                
+                Main.interfaz.state("seleccionando personaje");
+                
+                sleep(2000);
                 if (this.roundsN != 0 &&  roundsN%2 == 0){
                     this.probsNewPersonaje("Nintendo");
                     this.probsNewPersonaje("Capcom");
@@ -185,6 +188,9 @@ public class Admin extends Thread {
                 ai.pZE = pZE;
                 ai.pSF = pSF;
                 Main.interfaz.updateSelected(pZE, pSF); 
+                
+                Main.interfaz.state("simulando combate");
+                
                 Main.interfaz.updateQueues(qZE1,this.qZE2,this.qZE3,this.qZE4,this.qSF1,this.qSF2,this.qSF3,this.qSF4);       
                 //System.out.println("\n-- Admin running");
             

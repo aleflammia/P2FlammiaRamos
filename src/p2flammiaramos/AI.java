@@ -30,7 +30,7 @@ public class AI extends Thread {
         // 2 para Empate
         // 3 para Refuerzo
 
-        return 3; 
+        return 1; 
         
 //        int probsResultado = random();
 //        if (probsResultado <= 40){
@@ -112,12 +112,20 @@ public class AI extends Thread {
                 System.out.println("\nAI -- Selected:   " + pZE.id + "  y  " + pSF.id);
                 
                 int resultado = resultado();
+                String resultadoStr;
                 sleep(Main.duration);
+                Main.interfaz.state("");
                 switch (resultado) {
                     case 1:
-                        System.out.println("\tGanador: " + ganador(pZE, pSF).id); 
+                        resultadoStr = "Ganador: ";
+                        Main.interfaz.printResultado(resultadoStr);
+                        Personaje winner = ganador(pZE, pSF);
+                        System.out.println("\tGanador: " + winner.id); 
+                        Main.interfaz.printWinner(winner);
                         break;
                     case 2:
+                        resultadoStr = "Empate";
+                        Main.interfaz.printResultado(resultadoStr);
                         System.out.println("Empate ");
                         pZE.level = pSF.level = 1;
                         admin.queuePersonaje(pZE, admin.qZE1, admin.qZE2, admin.qZE3);
@@ -125,15 +133,18 @@ public class AI extends Thread {
                         break;
                     
                     case 3: 
+                        resultadoStr = "Suspendida";
+                        Main.interfaz.printResultado(resultadoStr);
                         System.out.println("Refuerzo ");
                         admin.sendRefuerzo(pZE, admin.qZE4);
                         admin.sendRefuerzo(pSF, admin.qSF4);
                         break;
                 }
                 sleep(Main.duration);
-                
+                Main.interfaz.cleanFields();
                 this.mutex.release();
                 sleep(1000);
+                
                 
             }catch (InterruptedException ex) {      
                 Logger.getLogger(AI.class.getName()).log(Level.SEVERE, null, ex);
