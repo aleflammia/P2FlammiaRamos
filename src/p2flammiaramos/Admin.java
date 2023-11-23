@@ -162,15 +162,30 @@ public class Admin extends Thread {
         }
     }
     
+    private void probsSacarRefuerzo(Queue refuerzo, Queue q1){
+        int result = r.nextInt(100);
+        if (result<=90 && !refuerzo.isEmpty()){
+            Personaje p = refuerzo.getHead();
+            refuerzo.dequeue();
+            p.setNext(null);
+            q1.enqueue(p);
+            Main.interfaz.updateQueues(qZE1,this.qZE2,this.qZE3,this.qZE4,this.qSF1,this.qSF2,this.qSF3,this.qSF4); 
+        }
+     
+    }
+    
     @Override
     public void run(){
         try {
-            sleep(2000);
+            sleep(1000);
         } catch (InterruptedException ex) {
             Logger.getLogger(Admin.class.getName()).log(Level.SEVERE, null, ex);
         }
         while (true){
             try {
+                
+                this.probsSacarRefuerzo(qZE4, qZE1);
+                this.probsSacarRefuerzo(qSF4, qSF1);
                 
                 Main.interfaz.state("seleccionando personaje");
                 
@@ -212,6 +227,7 @@ public class Admin extends Thread {
                 this.roundsN++;
                 
                 Main.interfaz.updateQueues(this.qZE1,this.qZE2,this.qZE3,this.qZE4,this.qSF1,this.qSF2,this.qSF3,this.qSF4);
+                
                 
             } catch (InterruptedException ex) {
             Logger.getLogger(Admin.class.getName()).log(Level.SEVERE, null, ex);

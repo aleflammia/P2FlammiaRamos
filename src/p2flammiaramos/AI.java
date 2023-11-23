@@ -14,40 +14,45 @@ public class AI extends Thread {
     public Personaje pZE;
     public Personaje pSF;
     public Admin admin;
+    public int winsZE;
+    public int winsSF;
     
     public AI() {
         this.mutex = Main.mutex;
         this.admin = Main.admin;
+        this.winsZE = 0;
+        this.winsSF = 0;
         
     }
-    
-    public void trying(){ 
-        System.out.println("jejej");
-    }
+
     
     public int resultado(){
         // 1 para Winner
         // 2 para Empate
         // 3 para Refuerzo
 
-        return 1; 
+        //return 3; 
         
-//        int probsResultado = random();
-//        if (probsResultado <= 40){
-//            return 1;
-//        } else if (probsResultado>40 && probsResultado<=67){
-//            return 2;
-//        } else {
-//            return 3;
-//        }
+        int probsResultado = random();
+        if (probsResultado <= 40){
+            return 1;
+        } else if (probsResultado>40 && probsResultado<=67){
+            return 2;
+        } else {
+            return 3;
+        }
     }
     
     public Personaje ganador(Personaje ZE, Personaje SF){
         
         if ( ZE.qAmount == SF.qAmount ){
             if (random()<50){
+                this.winsZE++;
+                Main.interfaz.updateWins(true, Integer.toString(this.winsZE+1));
                 return ZE;
             }
+            this.winsSF++;
+            Main.interfaz.updateWins(false, Integer.toString(this.winsSF));
             return SF;
         }
         
@@ -140,6 +145,7 @@ public class AI extends Thread {
                         admin.sendRefuerzo(pSF, admin.qSF4);
                         break;
                 }
+                Main.interfaz.updateQueues(admin.qZE1,admin.qZE2,admin.qZE3,admin.qZE4,admin.qSF1,admin.qSF2,admin.qSF3,admin.qSF4);
                 sleep(Main.duration);
                 Main.interfaz.cleanFields();
                 this.mutex.release();

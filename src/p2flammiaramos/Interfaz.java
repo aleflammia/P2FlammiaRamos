@@ -52,6 +52,13 @@ public class Interfaz extends javax.swing.JFrame {
         lblSelectedZE = new javax.swing.JLabel();
         jSlider1 = new javax.swing.JSlider();
         lblSliderValue = new javax.swing.JLabel();
+        titleSF = new javax.swing.JLabel();
+        titleSF1 = new javax.swing.JLabel();
+        titleZE = new javax.swing.JLabel();
+        winsSF = new javax.swing.JLabel();
+        winsZE = new javax.swing.JLabel();
+        winsCounterSF = new javax.swing.JLabel();
+        winsCounterZE = new javax.swing.JLabel();
         fondo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -311,6 +318,63 @@ public class Interfaz extends javax.swing.JFrame {
         lblSliderValue.setOpaque(true);
         getContentPane().add(lblSliderValue, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 520, 200, 20));
 
+        titleSF.setBackground(new java.awt.Color(0, 51, 102));
+        titleSF.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        titleSF.setForeground(new java.awt.Color(255, 255, 204));
+        titleSF.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        titleSF.setText("Street");
+        titleSF.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, new java.awt.Color(0, 102, 255), new java.awt.Color(0, 153, 204), new java.awt.Color(0, 102, 102), new java.awt.Color(0, 153, 153)));
+        titleSF.setOpaque(true);
+        getContentPane().add(titleSF, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 100, 70, 20));
+
+        titleSF1.setBackground(new java.awt.Color(0, 51, 102));
+        titleSF1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        titleSF1.setForeground(new java.awt.Color(255, 255, 204));
+        titleSF1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        titleSF1.setText("Fighter");
+        titleSF1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, new java.awt.Color(0, 102, 255), new java.awt.Color(0, 153, 204), new java.awt.Color(0, 102, 102), new java.awt.Color(0, 153, 153)));
+        titleSF1.setOpaque(true);
+        getContentPane().add(titleSF1, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 120, 70, 20));
+
+        titleZE.setBackground(new java.awt.Color(0, 51, 102));
+        titleZE.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        titleZE.setForeground(new java.awt.Color(255, 255, 204));
+        titleZE.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        titleZE.setText("Zelda");
+        titleZE.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, new java.awt.Color(0, 102, 255), new java.awt.Color(0, 153, 204), new java.awt.Color(0, 102, 102), new java.awt.Color(0, 153, 153)));
+        titleZE.setOpaque(true);
+        getContentPane().add(titleZE, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 100, 70, 40));
+
+        winsSF.setBackground(new java.awt.Color(255, 204, 0));
+        winsSF.setFont(new java.awt.Font("Segoe UI", 1, 10)); // NOI18N
+        winsSF.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        winsSF.setText("WINS");
+        winsSF.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, new java.awt.Color(255, 102, 0), new java.awt.Color(255, 153, 51), new java.awt.Color(255, 204, 0), new java.awt.Color(255, 204, 51)));
+        winsSF.setOpaque(true);
+        getContentPane().add(winsSF, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 100, 40, -1));
+
+        winsZE.setBackground(new java.awt.Color(255, 204, 0));
+        winsZE.setFont(new java.awt.Font("Segoe UI", 1, 10)); // NOI18N
+        winsZE.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        winsZE.setText("WINS");
+        winsZE.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, new java.awt.Color(255, 102, 0), new java.awt.Color(255, 153, 51), new java.awt.Color(255, 204, 0), new java.awt.Color(255, 204, 51)));
+        winsZE.setOpaque(true);
+        getContentPane().add(winsZE, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 100, 40, -1));
+
+        winsCounterSF.setBackground(new java.awt.Color(255, 204, 0));
+        winsCounterSF.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        winsCounterSF.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        winsCounterSF.setText("0");
+        winsCounterSF.setOpaque(true);
+        getContentPane().add(winsCounterSF, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 110, 40, 30));
+
+        winsCounterZE.setBackground(new java.awt.Color(255, 204, 0));
+        winsCounterZE.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        winsCounterZE.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        winsCounterZE.setText("0");
+        winsCounterZE.setOpaque(true);
+        getContentPane().add(winsCounterZE, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 110, 40, 30));
+
         fondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/fondo.jpg"))); // NOI18N
         getContentPane().add(fondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -10, -1, 580));
 
@@ -319,11 +383,19 @@ public class Interfaz extends javax.swing.JFrame {
 
     private void jSlider1StateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jSlider1StateChanged
         lblSliderValue.setText(Integer.toString(jSlider1.getValue()));
-        //this.duration = slider.getValue();
+        Main.duration = Integer.parseInt(this.getDuration())*1000;
     }//GEN-LAST:event_jSlider1StateChanged
 
     public String getDuration(){
         return lblSliderValue.getText();
+    }
+    
+    public void updateWins(boolean ZeldaWinner, String n){
+        if (ZeldaWinner){
+            this.winsCounterZE.setText(n);
+        }else{
+            this.winsCounterSF.setText(n);
+        }
     }
             
             
@@ -449,5 +521,12 @@ public class Interfaz extends javax.swing.JFrame {
     private javax.swing.JTextArea taZE2;
     private javax.swing.JTextArea taZE3;
     private javax.swing.JTextArea taZE4;
+    private javax.swing.JLabel titleSF;
+    private javax.swing.JLabel titleSF1;
+    private javax.swing.JLabel titleZE;
+    private javax.swing.JLabel winsCounterSF;
+    private javax.swing.JLabel winsCounterZE;
+    private javax.swing.JLabel winsSF;
+    private javax.swing.JLabel winsZE;
     // End of variables declaration//GEN-END:variables
 }
