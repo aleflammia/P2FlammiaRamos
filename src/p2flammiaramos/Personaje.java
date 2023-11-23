@@ -44,7 +44,7 @@ public class Personaje {
         if (agility){qAmount+=3;}
         
         if (qAmount >= 11){return 1;}
-        if (qAmount >=5  && qAmount <= 10){return 2;}
+        if (qAmount >=5  && qAmount < 10){return 2;}
         return 3;
     }
     

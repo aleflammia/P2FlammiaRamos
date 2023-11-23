@@ -31,7 +31,7 @@ public class AI extends Thread {
         // 2 para Empate
         // 3 para Refuerzo
 
-        //return 3; 
+        //return 1; 
         
         int probsResultado = random();
         if (probsResultado <= 40){
@@ -47,12 +47,8 @@ public class AI extends Thread {
         
         if ( ZE.qAmount == SF.qAmount ){
             if (random()<50){
-                this.winsZE++;
-                Main.interfaz.updateWins(true, Integer.toString(this.winsZE+1));
                 return ZE;
             }
-            this.winsSF++;
-            Main.interfaz.updateWins(false, Integer.toString(this.winsSF));
             return SF;
         }
         
@@ -114,7 +110,7 @@ public class AI extends Thread {
                 this.mutex.acquire();
                 
                 
-                System.out.println("\nAI -- Selected:   " + pZE.id + "  y  " + pSF.id);
+                System.out.println("\n Ronda: " + Integer.toString(this.admin.roundsN) + "\nAI -- Selected:   " + pZE.id + "  y  " + pSF.id);
                 
                 int resultado = resultado();
                 String resultadoStr;
@@ -125,6 +121,13 @@ public class AI extends Thread {
                         resultadoStr = "Ganador: ";
                         Main.interfaz.printResultado(resultadoStr);
                         Personaje winner = ganador(pZE, pSF);
+                        if (winner==pZE){
+                            this.winsZE++;
+                            Main.interfaz.updateWins(true, Integer.toString(this.winsZE));
+                        }else{
+                            this.winsSF++;
+                            Main.interfaz.updateWins(false, Integer.toString(this.winsSF));
+                        }
                         System.out.println("\tGanador: " + winner.id); 
                         Main.interfaz.printWinner(winner);
                         break;
@@ -146,7 +149,7 @@ public class AI extends Thread {
                         break;
                 }
                 Main.interfaz.updateQueues(admin.qZE1,admin.qZE2,admin.qZE3,admin.qZE4,admin.qSF1,admin.qSF2,admin.qSF3,admin.qSF4);
-                sleep(Main.duration);
+                sleep(Main.duration/2);
                 Main.interfaz.cleanFields();
                 this.mutex.release();
                 sleep(1000);

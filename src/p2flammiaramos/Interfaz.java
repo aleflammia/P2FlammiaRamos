@@ -366,14 +366,14 @@ public class Interfaz extends javax.swing.JFrame {
         winsCounterSF.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         winsCounterSF.setText("0");
         winsCounterSF.setOpaque(true);
-        getContentPane().add(winsCounterSF, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 110, 40, 30));
+        getContentPane().add(winsCounterSF, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 120, 40, 20));
 
         winsCounterZE.setBackground(new java.awt.Color(255, 204, 0));
         winsCounterZE.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         winsCounterZE.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         winsCounterZE.setText("0");
         winsCounterZE.setOpaque(true);
-        getContentPane().add(winsCounterZE, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 110, 40, 30));
+        getContentPane().add(winsCounterZE, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 120, 40, 20));
 
         fondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/fondo.jpg"))); // NOI18N
         getContentPane().add(fondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -10, -1, 580));

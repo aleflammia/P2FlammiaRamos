@@ -46,6 +46,8 @@ public class Admin extends Thread {
         this.qZE2 = new Queue();
         this.qZE3 = new Queue();
         this.qZE4 = new Queue();
+        
+        this.roundsN = 0;
  
     }
     
@@ -143,9 +145,9 @@ public class Admin extends Thread {
     private void priorityCheck(Queue q1, Queue q2, Queue q3){
         Personaje head = q2.getHead();
         while (head != null && head.roundsCounter == 8){
-            head.setNext(null);
             q2.dequeue();
-            head.level++;
+            head.setNext(null);
+            head.level--;
             head.roundsCounter = 0;
             this.queuePersonaje(head, q1, q2, q3);
             head = q2.getHead();
@@ -153,9 +155,9 @@ public class Admin extends Thread {
         
         head = q3.getHead();
         while (head != null && head.roundsCounter == 8){
-            head.setNext(null);
             q3.dequeue();
-            head.level++;
+            head.setNext(null);
+            head.level--;
             head.roundsCounter = 0;
             this.queuePersonaje(head, q1, q2, q3);
             head = q3.getHead();
@@ -164,7 +166,7 @@ public class Admin extends Thread {
     
     private void probsSacarRefuerzo(Queue refuerzo, Queue q1){
         int result = r.nextInt(100);
-        if (result<=90 && !refuerzo.isEmpty()){
+        if (result<=40 && !refuerzo.isEmpty()){
             Personaje p = refuerzo.getHead();
             refuerzo.dequeue();
             p.setNext(null);
@@ -193,7 +195,7 @@ public class Admin extends Thread {
                 if (this.roundsN != 0 &&  roundsN%2 == 0){
                     this.probsNewPersonaje("Nintendo");
                     this.probsNewPersonaje("Capcom");
-                    this.roundsN = 0;
+                    
                 }
                 
                 Personaje pZE = this.getFromQ(this.qZE1,this.qZE2,this.qZE3);
@@ -210,7 +212,7 @@ public class Admin extends Thread {
                 //System.out.println("\n-- Admin running");
             
                 this.mutex.release();
-                sleep(Main.duration/2);
+                sleep(1000);
                 this.mutex.acquire();
  
                 
